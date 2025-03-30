@@ -1,0 +1,106 @@
+name: Flutter Package CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build_test:
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.0'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.pub-cache
+            .dart_tool
+          key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Analyze code
+        run: flutter analyze
+
+      - name: Run tests
+        run: flutter test
+
+  tag_version:
+    name: Bump Version & Tag
+    needs: build_test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Get latest tag
+        id: latest_tag
+        run: |
+          TAG=$(git tag --list | sort -V | tail -n 1)
+          echo "TAG=${TAG:-0.0.0}" >> $GITHUB_ENV
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          OLD_VERSION=${TAG}
+          NEW_VERSION=$(echo $OLD_VERSION | awk -F. -v OFS=. '{$NF += 1 ; print}')
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Update pubspec.yaml
+        run: |
+          sed -i 's/version: .*/version: '${NEW_VERSION}'/' pubspec.yaml
+          cat pubspec.yaml | grep "version:"
+
+      - name: Commit & Push version bump
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git commit -am "Bump version to $NEW_VERSION"
+          git push origin main
+
+      - name: Create Git Tag
+        run: |
+          git tag $NEW_VERSION
+          git push origin $NEW_VERSION
+
+  publish:
+    name: Publish to pub.dev
+    needs: tag_version
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.3.0'
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Publish to pub.dev
+        run: flutter pub publish --force
+        env:
+          PUB_DEV_TOKEN: ${{ secrets.PUB_DEV_TOKEN }}
