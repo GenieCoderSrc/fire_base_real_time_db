@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
-## 0.0.1
+## 0.0.3
+- update main example file
+
+
+## 0.0.2
 ### Added
 - Implemented `saveDocument` for saving data to Firebase Realtime Database.
 - Implemented `setDocument` to set a document with a specific ID.
@@ -18,5 +22,5 @@ All notable changes to this project will be documented in this file.
 - This package provides an abstraction layer for Firebase Realtime Database operations in Flutter.
 - Future updates may include additional query support and error-handling improvements.
 
-## 0.0.2 
+## 0.0.1
 - Initial Release
