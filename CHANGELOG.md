@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.4
+- create register Firebase RealTime DB Service GetIt DI.
+
 ## 0.0.3
 - update main example file
 
