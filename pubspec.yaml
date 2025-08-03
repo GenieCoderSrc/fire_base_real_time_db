@@ -13,11 +13,16 @@ dependencies:
   flutter:
     sdk: flutter
 
-  firebase_database: ^11.3.1
-  firebase_core: ^3.10.1
-  get_it_di_global_variable: ^0.0.5
-  fire_storage_impl: ^0.0.4
-  firestore_db_impl: ^0.0.2
+  get_it_di_global_variable:
+    path: ../get_it_di_global_variable
+  fire_storage_impl:
+    path: ../fire_storage_impl
+  firestore_db_impl:
+    path: ../firestore_db_impl
+
+  
+  firebase_database: ^12.0.0
+  firebase_core: ^4.0.0
 
 dev_dependencies:
   flutter_test:
