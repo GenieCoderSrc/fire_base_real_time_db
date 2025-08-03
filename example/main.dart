@@ -19,7 +19,8 @@ Future<void> main() async {
   );
 
   // Fetch all documents from the database
-  List<Map<String, dynamic>?>? users = await realTimeDbService.getAllDocuments(path: path);
+  List<Map<String, dynamic>?>? users =
+      await realTimeDbService.getAllDocuments(path: path);
 
   print('Users: $users');
 }
