@@ -6,7 +6,7 @@ repository: https://github.com/GenieCoderSrc/fire_base_real_time_db
 issue_tracker: https://github.com/GenieCoderSrc/fire_base_real_time_db/issues
 
 environment:
-  sdk: ^3.6.0
+  sdk: ^3.8.1
   flutter: ">=1.17.0"
 
 dependencies:
@@ -27,7 +27,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^5.0.0
+  flutter_lints: ^6.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
