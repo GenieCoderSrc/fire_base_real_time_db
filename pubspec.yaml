@@ -13,12 +13,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get_it_di_global_variable:
-    path: ../get_it_di_global_variable
-  fire_storage_impl:
-    path: ../fire_storage_impl
-  firestore_db_impl:
-    path: ../firestore_db_impl
+  get_it_di_global_variable: ^0.0.5
+  fire_storage_impl: ^0.0.8
+  firestore_db_impl: ^0.0.2+1
+
 
   
   firebase_database: ^12.0.0
