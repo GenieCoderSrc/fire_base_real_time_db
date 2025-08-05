@@ -11,6 +11,7 @@ void registerFirebaseRealTimeDBServiceGetItDI() {
   // ----------- Image Service ---------
   /// ----------------- Service --------------
   sl.registerLazySingleton<IRealTimeDbCrudService>(
-      () => RealTimeDbCrudServiceImpl(realTimeDb: sl.get<FirebaseDatabase>()));
+    () => RealTimeDbCrudServiceImpl(realTimeDb: sl.get<FirebaseDatabase>()),
+  );
   // final FirebaseInstance firebaseService = FirebaseInstance.getInstance;
 }

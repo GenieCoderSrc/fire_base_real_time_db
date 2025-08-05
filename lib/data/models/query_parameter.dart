@@ -5,9 +5,5 @@ class QueryParameter {
   final String? field;
   final dynamic value;
 
-  QueryParameter({
-    required this.type,
-    required this.field,
-    this.value,
-  });
+  QueryParameter({required this.type, required this.field, this.value});
 }

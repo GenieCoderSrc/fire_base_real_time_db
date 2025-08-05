@@ -8,27 +8,36 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   final FirebaseDatabase _realTimeDb;
 
   RealTimeDbCrudServiceImpl({FirebaseDatabase? realTimeDb})
-      : _realTimeDb = realTimeDb ?? FirebaseDatabase.instance;
+    : _realTimeDb = realTimeDb ?? FirebaseDatabase.instance;
 
   @override
-  Future<bool> saveDocument(
-      {Map<String, dynamic>? data,
-      required String path,
-      String? successTxt}) async {
+  Future<bool> saveDocument({
+    Map<String, dynamic>? data,
+    required String path,
+    String? successTxt,
+  }) async {
     try {
       if (data != null) {
-        return await _realTimeDb.ref().child(path).push().set(data).then((_) {
-          if (successTxt != null) {
-            debugPrint(successTxt);
-          }
-          return true;
-        }).catchError((error) {
-          debugPrint(
-              'RealTimeDbCrudServiceImpl | saveDocument | Error: $error');
-        });
+        return await _realTimeDb
+            .ref()
+            .child(path)
+            .push()
+            .set(data)
+            .then((_) {
+              if (successTxt != null) {
+                debugPrint(successTxt);
+              }
+              return true;
+            })
+            .catchError((error) {
+              debugPrint(
+                'RealTimeDbCrudServiceImpl | saveDocument | Error: $error',
+              );
+            });
       } else {
         debugPrint(
-            'RealTimeDbCrudServiceImpl | saveDocument | Error: data is null');
+          'RealTimeDbCrudServiceImpl | saveDocument | Error: data is null',
+        );
       }
       return false;
     } catch (e) {
@@ -46,15 +55,20 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   }) async {
     try {
       DatabaseReference reference = _realTimeDb.ref().child(path).child(id);
-      return await reference.set(data).then((_) {
-        if (successTxt != null) {
-          debugPrint(successTxt);
-        }
-        return true;
-      }).catchError((error) {
-        debugPrint('RealTimeDbCrudServiceImpl | setDocument | Error: $error');
-        return false;
-      });
+      return await reference
+          .set(data)
+          .then((_) {
+            if (successTxt != null) {
+              debugPrint(successTxt);
+            }
+            return true;
+          })
+          .catchError((error) {
+            debugPrint(
+              'RealTimeDbCrudServiceImpl | setDocument | Error: $error',
+            );
+            return false;
+          });
     } catch (e) {
       debugPrint('RealTimeDbCrudServiceImpl | setDocument | Error: $e');
       return false;
@@ -70,16 +84,20 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   }) async {
     try {
       DatabaseReference reference = _realTimeDb.ref().child(path).child(id);
-      return await reference.update(data).then((_) {
-        if (successTxt != null) {
-          debugPrint(successTxt);
-        }
-        return true;
-      }).catchError((error) {
-        debugPrint(
-            'RealTimeDbCrudServiceImpl | updateDocument | catchError: $error');
-        return false;
-      });
+      return await reference
+          .update(data)
+          .then((_) {
+            if (successTxt != null) {
+              debugPrint(successTxt);
+            }
+            return true;
+          })
+          .catchError((error) {
+            debugPrint(
+              'RealTimeDbCrudServiceImpl | updateDocument | catchError: $error',
+            );
+            return false;
+          });
     } catch (e) {
       debugPrint('RealTimeDbCrudServiceImpl | updateDocument | Error: $e');
       return false;
@@ -94,16 +112,20 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   }) async {
     try {
       DatabaseReference reference = _realTimeDb.ref().child(path).child(id);
-      return await reference.remove().then((_) {
-        if (successTxt != null) {
-          debugPrint(successTxt);
-        }
-        return true;
-      }).catchError((error) {
-        debugPrint(
-            'RealTimeDbCrudServiceImpl | removeDocument | catchError: $error');
-        return false;
-      });
+      return await reference
+          .remove()
+          .then((_) {
+            if (successTxt != null) {
+              debugPrint(successTxt);
+            }
+            return true;
+          })
+          .catchError((error) {
+            debugPrint(
+              'RealTimeDbCrudServiceImpl | removeDocument | catchError: $error',
+            );
+            return false;
+          });
     } catch (e) {
       debugPrint('RealTimeDbCrudServiceImpl | removeDocument | Error: $e');
       return false;
@@ -112,15 +134,21 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
 
   // Single Data
   @override
-  Future<DataSnapshot?> getDocumentById(
-      {required String path, required String id}) async {
+  Future<DataSnapshot?> getDocumentById({
+    required String path,
+    required String id,
+  }) async {
     try {
-      DatabaseEvent event =
-          await _realTimeDb.ref().child(path).child(id).once();
+      DatabaseEvent event = await _realTimeDb
+          .ref()
+          .child(path)
+          .child(id)
+          .once();
       return event.snapshot;
     } catch (e) {
       debugPrint(
-          'RealTimeDbCrudServiceImpl | getDocumentById | Error getting document by ID: $e');
+        'RealTimeDbCrudServiceImpl | getDocumentById | Error getting document by ID: $e',
+      );
       return null;
     }
   }
@@ -143,8 +171,10 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
         final Map<dynamic, dynamic> values =
             snapshot.value as Map<dynamic, dynamic>;
         return values
-            .map((key, value) =>
-                MapEntry(key.toString(), value as Map<String, dynamic>))
+            .map(
+              (key, value) =>
+                  MapEntry(key.toString(), value as Map<String, dynamic>),
+            )
             .values
             .toList();
       }
@@ -195,8 +225,9 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
 
     Query query = reference.applyQueryParameters(queryParameters);
 
-    return query.onValue.map((DatabaseEvent event) =>
-        [event.snapshot.value as Map<String, dynamic>?]);
+    return query.onValue.map(
+      (DatabaseEvent event) => [event.snapshot.value as Map<String, dynamic>?],
+    );
   }
 
   // @override
@@ -281,8 +312,10 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   //   }
   // }
 
-  Query setEqualToMap(
-      {required Map<String, dynamic> equalToMap, required Query query}) {
+  Query setEqualToMap({
+    required Map<String, dynamic> equalToMap,
+    required Query query,
+  }) {
     try {
       for (var entry in equalToMap.entries) {
         var key = entry.key;
