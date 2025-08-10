@@ -15,7 +15,7 @@ dependencies:
 
   get_it_di_global_variable: ^0.0.5
   fire_storage_impl: ^0.0.8
-  firestore_db_impl: ^0.0.2+1
+  firestore_db_impl: ^0.0.3
 
 
   
