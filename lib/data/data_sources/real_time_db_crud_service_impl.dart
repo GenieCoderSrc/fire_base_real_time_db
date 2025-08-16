@@ -33,6 +33,7 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
               debugPrint(
                 'RealTimeDbCrudServiceImpl | saveDocument | Error: $error',
               );
+              return false;
             });
       } else {
         debugPrint(
