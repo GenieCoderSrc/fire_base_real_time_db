@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.6
+
+### Aug 22, 2025
+
+### ✨ Updated
+
+- Updated `firestore_db_impl` to 0.0.4
+- Updated `get_it_di_global_variable` to 0.0.6
+- Updated Dart sdk to 3.9.0
+- Removed `flutter_lints` Dependency
+
 ## 0.0.5
 
 ### Aug 17, 2025
