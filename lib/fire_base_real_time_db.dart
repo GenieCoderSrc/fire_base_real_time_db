@@ -3,4 +3,4 @@ export 'package:fire_base_real_time_db/data/data_sources/i_data_sources/i_real_t
 export 'package:fire_base_real_time_db/data/data_sources/real_time_db_crud_service_impl.dart';
 export 'package:fire_base_real_time_db/data/enums/query_type.dart';
 export 'package:fire_base_real_time_db/data/models/query_parameter.dart';
-export 'package:fire_base_real_time_db/extentions/data_base_reference_extentions.dart';
+export 'package:fire_base_real_time_db/extensions/data_base_reference_extentions.dart';

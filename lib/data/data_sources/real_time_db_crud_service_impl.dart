@@ -1,6 +1,6 @@
 import 'package:fire_base_real_time_db/data/data_sources/i_data_sources/i_real_time_db_crud_service.dart';
 import 'package:fire_base_real_time_db/data/models/query_parameter.dart';
-import 'package:fire_base_real_time_db/extentions/data_base_reference_extentions.dart';
+import 'package:fire_base_real_time_db/extensions/data_base_reference_extentions.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 

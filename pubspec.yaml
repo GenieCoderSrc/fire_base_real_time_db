@@ -1,6 +1,6 @@
 name: fire_base_real_time_db
 description: "fire_base_real_time_db is a Flutter package that provides an abstraction layer for Firebase Realtime Database CRUD operations. It simplifies data management with methods for saving, updating, deleting, and querying documents, including real-time stream updates."
-version: 0.0.6
+version: 0.0.7
 homepage: https://github.com/GenieCoderSrc/fire_base_real_time_db
 repository: https://github.com/GenieCoderSrc/fire_base_real_time_db
 issue_tracker: https://github.com/GenieCoderSrc/fire_base_real_time_db/issues
@@ -14,11 +14,11 @@ dependencies:
     sdk: flutter
 
   get_it_di_global_variable: ^0.0.6
-  firestore_db_impl: ^0.0.4
+#  firestore_db_impl: ^0.0.5
 
 
-  firebase_database: ^12.0.0
-  firebase_core: ^4.0.0
+  firebase_database: ^12.0.1
+  firebase_core: ^4.1.0
 
 dev_dependencies:
   flutter_test:
