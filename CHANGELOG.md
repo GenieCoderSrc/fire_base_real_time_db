@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.8
+
+### Jun 15, 2026
+
+### ✨ Updated
+- Updated `firebase_database: ^12.4.2`
+- Updated `firebase_core: ^4.10.0`
+
+
+
 All notable changes to this project will be documented in this file.
 
 ## 0.0.7
