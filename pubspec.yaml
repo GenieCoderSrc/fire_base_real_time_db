@@ -13,7 +13,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get_it_di_global_variable: ^0.0.6
+  get_it_di_global_variable: ^0.0.7
 #  firestore_db_impl: ^0.0.5
 
 
