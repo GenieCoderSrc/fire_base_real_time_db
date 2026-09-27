@@ -2,7 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.1.0
+
+### Sep 26, 2026
+
+### ✨ Updated
+
+- Updated `firebase_database ^12.6.0`
+- Updated `firebase_core ^4.15.0`
+
 ## 0.0.9
+
 
 ### Jun 20, 2026
 
