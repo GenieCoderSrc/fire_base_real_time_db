@@ -16,6 +16,8 @@ A Dart package to simplify CRUD operations on Firebase Realtime Database. This p
 Add this package to your `pubspec.yaml` file:
 
 ```yaml
+resolution: workspace
+
 dependencies:
   fire_base_real_time_db: latest_version
 ```
