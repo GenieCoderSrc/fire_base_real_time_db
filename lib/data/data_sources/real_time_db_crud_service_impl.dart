@@ -8,7 +8,7 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   final FirebaseDatabase _realTimeDb;
 
   RealTimeDbCrudServiceImpl({FirebaseDatabase? realTimeDb})
-    : _realTimeDb = realTimeDb ?? FirebaseDatabase.instance;
+      : _realTimeDb = realTimeDb ?? FirebaseDatabase.instance;
 
   @override
   Future<bool> saveDocument({
@@ -18,23 +18,17 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   }) async {
     try {
       if (data != null) {
-        return await _realTimeDb
-            .ref()
-            .child(path)
-            .push()
-            .set(data)
-            .then((_) {
-              if (successTxt != null) {
-                debugPrint(successTxt);
-              }
-              return true;
-            })
-            .catchError((error) {
-              debugPrint(
-                'RealTimeDbCrudServiceImpl | saveDocument | Error: $error',
-              );
-              return false;
-            });
+        return await _realTimeDb.ref().child(path).push().set(data).then((_) {
+          if (successTxt != null) {
+            debugPrint(successTxt);
+          }
+          return true;
+        }).catchError((error) {
+          debugPrint(
+            'RealTimeDbCrudServiceImpl | saveDocument | Error: $error',
+          );
+          return false;
+        });
       } else {
         debugPrint(
           'RealTimeDbCrudServiceImpl | saveDocument | Error: data is null',
@@ -56,20 +50,17 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   }) async {
     try {
       DatabaseReference reference = _realTimeDb.ref().child(path).child(id);
-      return await reference
-          .set(data)
-          .then((_) {
-            if (successTxt != null) {
-              debugPrint(successTxt);
-            }
-            return true;
-          })
-          .catchError((error) {
-            debugPrint(
-              'RealTimeDbCrudServiceImpl | setDocument | Error: $error',
-            );
-            return false;
-          });
+      return await reference.set(data).then((_) {
+        if (successTxt != null) {
+          debugPrint(successTxt);
+        }
+        return true;
+      }).catchError((error) {
+        debugPrint(
+          'RealTimeDbCrudServiceImpl | setDocument | Error: $error',
+        );
+        return false;
+      });
     } catch (e) {
       debugPrint('RealTimeDbCrudServiceImpl | setDocument | Error: $e');
       return false;
@@ -85,20 +76,17 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   }) async {
     try {
       DatabaseReference reference = _realTimeDb.ref().child(path).child(id);
-      return await reference
-          .update(data)
-          .then((_) {
-            if (successTxt != null) {
-              debugPrint(successTxt);
-            }
-            return true;
-          })
-          .catchError((error) {
-            debugPrint(
-              'RealTimeDbCrudServiceImpl | updateDocument | catchError: $error',
-            );
-            return false;
-          });
+      return await reference.update(data).then((_) {
+        if (successTxt != null) {
+          debugPrint(successTxt);
+        }
+        return true;
+      }).catchError((error) {
+        debugPrint(
+          'RealTimeDbCrudServiceImpl | updateDocument | catchError: $error',
+        );
+        return false;
+      });
     } catch (e) {
       debugPrint('RealTimeDbCrudServiceImpl | updateDocument | Error: $e');
       return false;
@@ -113,20 +101,17 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
   }) async {
     try {
       DatabaseReference reference = _realTimeDb.ref().child(path).child(id);
-      return await reference
-          .remove()
-          .then((_) {
-            if (successTxt != null) {
-              debugPrint(successTxt);
-            }
-            return true;
-          })
-          .catchError((error) {
-            debugPrint(
-              'RealTimeDbCrudServiceImpl | removeDocument | catchError: $error',
-            );
-            return false;
-          });
+      return await reference.remove().then((_) {
+        if (successTxt != null) {
+          debugPrint(successTxt);
+        }
+        return true;
+      }).catchError((error) {
+        debugPrint(
+          'RealTimeDbCrudServiceImpl | removeDocument | catchError: $error',
+        );
+        return false;
+      });
     } catch (e) {
       debugPrint('RealTimeDbCrudServiceImpl | removeDocument | Error: $e');
       return false;
@@ -140,11 +125,8 @@ class RealTimeDbCrudServiceImpl implements IRealTimeDbCrudService {
     required String id,
   }) async {
     try {
-      DatabaseEvent event = await _realTimeDb
-          .ref()
-          .child(path)
-          .child(id)
-          .once();
+      DatabaseEvent event =
+          await _realTimeDb.ref().child(path).child(id).once();
       return event.snapshot;
     } catch (e) {
       debugPrint(
